@@ -1,0 +1,3 @@
+user_api:
+    resource: '../src/User/Presentation/Controller/'
+    type: attribute
