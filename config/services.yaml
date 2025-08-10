@@ -1,0 +1,25 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\User\Business\Contract\UserRepositoryInterface:
+        alias: App\User\DataSource\Repository\DoctrineUserRepository
+
+    App\User\Business\Contract\UserServiceInterface:
+        alias: App\User\Business\Service\UserService
+
+    App\User\DataSource\Repository\DoctrineUserRepository:
+        arguments:
+            $registry: '@doctrine'
+        tags:
+            - { name: 'doctrine.repository_service' }
