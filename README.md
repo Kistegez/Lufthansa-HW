@@ -107,7 +107,6 @@ To get YAML responses, use one of these methods:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Kistegez/Lufthansa-HW.git
-   cd akos-tegez-lufthansa-hw
    ```
 
 2. **Start everything with Docker:**
@@ -128,7 +127,6 @@ To get YAML responses, use one of these methods:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Kistegez/Lufthansa-HW.git
-   cd akos-tegez-lufthansa-hw
    ```
 
 2. **Install dependencies:**
