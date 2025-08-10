@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: lufthansa_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: lufthansa_hw
+      MYSQL_USER: app
+      MYSQL_PASSWORD: lufthansa
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  app:
+    build: .
+    container_name: lufthansa_app
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "mysql://app:lufthansa@database:3306/lufthansa_hw?serverVersion=8.0.32&charset=utf8mb4"
+    command: >
+      sh -c "php bin/console doctrine:migrations:migrate --no-interaction &&
+             php -S 0.0.0.0:8000 -t public"
+
+volumes:
+  mysql_data:
