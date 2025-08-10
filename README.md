@@ -182,6 +182,11 @@ curl http://localhost:8000/api/users/1
 
 ## The project includes a test suite
 
+**Install PHPUnit:**
+```bash
+composer install
+```
+
 **Run all tests:**
 ```bash
 php bin/phpunit
