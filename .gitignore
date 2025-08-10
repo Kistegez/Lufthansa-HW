@@ -17,9 +17,6 @@
 *.iws
 *.ipr
 
-### Composer ###
-composer.lock
-
 ### Logs ###
 /logs/
 /var/log/
